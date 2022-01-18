@@ -44,6 +44,27 @@
 (require 'org)
 (setq org-hide-emphasis-markers t)
 
+;elcord
+(require 'elcord)
+(elcord-mode)
+
+
+;(use-package hl-todo
+;       :ensure t
+;       :custom-face
+;       (hl-todo ((t (:inherit hl-todo :italic t))))
+;       :hook ((prog-mode . hl-todo-mode)
+;              (yaml-mode . hl-todo-mode)))
+
+(use-package hl-todo
+  :hook (prog-mode . hl-todo-mode)
+  :config (setq hl-todo-highlight-punctuation ":" hl-todo-keyword-faces
+		`(("TODO" warning bold) ("FIXME" error bold)
+		  ("HACK" font-lock-constant-face bold)
+		  ("REVIEW" font-lock-keyword-face bold)
+		  ("NOTE" success bold)
+		  ("DEPRECATED" font-lock-doc-face bold))))
+
 ; Time on every bar
 (display-time-mode 1)
 
@@ -126,7 +147,7 @@
  '(org-hide-leading-stars t)
  '(org-support-shift-select t)
  '(package-selected-packages
-   '(sublimity rust-mode xref dumb-jump treemacs-all-the-icons treemacs-magit treemacs use-package diff-hl sublime-themes ssh popwin minimap direx autopair))
+   '(elpy hl-todo elcord sublimity rust-mode xref dumb-jump treemacs-all-the-icons treemacs-magit treemacs use-package diff-hl sublime-themes ssh popwin minimap direx autopair))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -135,6 +156,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:background nil))))
+ '(hl-todo ((t (:inherit hl-todo :italic t))))
  '(org-document-title ((t (:inherit default :weight bold :foreground "SystemWindowText" :font "Verdana" :height 2.0 :underline nil))))
  '(org-level-1 ((t (:inherit default :weight bold :foreground "SystemWindowText" :font "Verdana" :height 1.75))))
  '(org-level-2 ((t (:inherit default :weight bold :foreground "SystemWindowText" :font "Verdana" :height 1.5))))
